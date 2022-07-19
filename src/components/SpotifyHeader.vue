@@ -21,6 +21,7 @@ header{
 
 .ms_logo{
     width: 50px;
+    fill: green;
 }
 
 
