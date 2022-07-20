@@ -1,9 +1,9 @@
 <template>
   <main>
     <div class="container">
-        <MainSelect @select="albumGenre"/>
+        <MainSelect @select="filterGenre"/>
         <div class="ms_box p-5">
-            <MainCards v-for="(card, index) in SpotifyInfo" :key="index"
+            <MainCards v-for="(card, index) in albumGenre" :key="index"
               :card="card"
             />
 
@@ -25,20 +25,22 @@ export default {
     data: function() {
         return{
             SpotifyInfo: [],
+            albumGenre: [],
         }
     },
 
     methods:{
-        albumGenre(element) {
-            console.log(element);
+        filterGenre(gender) {
+            this.albumGenre = [...this.SpotifyInfo].filter((card) => card.genre.includes(gender) );
+            console.log(this.albumGenre);
         },
 
         getCardsSpotify(){
           axios.get("https://flynn.boolean.careers/exercises/api/array/music")
             .then((result) => {
-/*                 console.log(result.data.response);  */
                 this.SpotifyInfo = result.data.response; 
                 console.log(this.SpotifyInfo ); 
+                this.albumGenre = this.SpotifyInfo 
             })
             .catch((error) => {
                 console.log(error);
@@ -48,7 +50,6 @@ export default {
 
     created(){
         this.getCardsSpotify();
-        this.albumGenre();
     }
 }
 </script>
@@ -56,6 +57,7 @@ export default {
 <style lang="scss">
 main{
    background-color: rgb(27, 32, 46);
+   min-height: 1200px;
    height: 100%;
 }
 
