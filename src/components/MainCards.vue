@@ -1,11 +1,13 @@
 <template>
   <div class="p-4 ms_cards mx-3 mt-4">
-    <img class="ms_img" :src="card.poster" alt="">
-    <div class="text-center mt-3">
-      <h3>{{card.title}}</h3>
-      <h5 class="ms_t-g">{{card.author}}</h5>
-      <div class="ms_t-g">{{card.year}}</div>
-    </div>
+    <a href="">
+      <img class="ms_img" :src="card.poster" alt="">
+      <div class="text-center mt-3">
+        <h3>{{card.title}}</h3>
+        <h5 class="ms_t-g">{{card.author}}</h5>
+        <div class="ms_t-g">{{card.year}}</div>
+      </div>
+    </a>
   </div>
 </template>
 
@@ -19,6 +21,10 @@ export default {
 .ms_cards{
   width: calc((100% / 5) - 2rem);
   background-color: rgb(50, 50, 61);
+}
+
+a{
+  text-decoration: none;
 }
 
 .ms_img{

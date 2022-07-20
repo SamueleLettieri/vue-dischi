@@ -1,7 +1,10 @@
 <template>
   <main>
     <div class="container">
-        <MainSelect @select="filterGenre"/>
+        <div class="d-flex justify-content-center">
+            <MainSelectGender @select="filterGenre"/>
+            <MainSelectArtists @select="filterAuthor"/>
+        </div>
         <div class="ms_box p-5">
             <MainCards v-for="(card, index) in albumGenre" :key="index"
               :card="card"
@@ -15,11 +18,13 @@
 <script>
 import axios from "axios"; 
 import MainCards from './MainCards.vue';
-import MainSelect from './MainSelect.vue';
+import MainSelectGender from './MainSelectGender.vue';
+import MainSelectArtists from './MainSelectArtists.vue';
 export default {
     components: {
        MainCards,
-       MainSelect,
+       MainSelectGender,
+       MainSelectArtists,
     },
 
     data: function() {
@@ -32,6 +37,11 @@ export default {
     methods:{
         filterGenre(gender) {
             this.albumGenre = [...this.SpotifyInfo].filter((card) => card.genre.includes(gender) );
+            console.log(this.albumGenre);
+        },
+
+        filterAuthor(author) {
+            this.albumGenre = [...this.SpotifyInfo].filter((card) => card.author.includes(author) );
             console.log(this.albumGenre);
         },
 
@@ -64,6 +74,7 @@ main{
 .ms_box{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
  
